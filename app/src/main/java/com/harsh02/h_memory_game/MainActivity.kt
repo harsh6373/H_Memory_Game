@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.harsh02.h_memory_game.models.BoardSize
+import com.harsh02.h_memory_game.utils.DEFAULT_ICONS
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvnumpairs: TextView
 
 
+    private var boardSize:BoardSize = BoardSize.EASY
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,9 +26,13 @@ class MainActivity : AppCompatActivity() {
         tvnummoves = findViewById(R.id.tv_num_moves)
         tvnumpairs = findViewById(R.id.tv_num_pairs)
 
-        rvBoard.adapter = MemoryBoardAdapter(this,8)
+       val chosenImages =  DEFAULT_ICONS.shuffled().take(boardSize.getNumPairs())
+        val randommized_images = (chosenImages + chosenImages).shuffled()
+
+
+        rvBoard.adapter = MemoryBoardAdapter(this,boardSize,randommized_images)
         rvBoard.setHasFixedSize(true)
-        rvBoard.layoutManager = GridLayoutManager(this,2)
+        rvBoard.layoutManager = GridLayoutManager(this,boardSize.getWidth())
 
     }
 }

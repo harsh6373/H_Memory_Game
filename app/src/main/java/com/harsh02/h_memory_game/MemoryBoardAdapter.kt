@@ -8,10 +8,15 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.harsh02.h_memory_game.models.BoardSize
 import kotlin.math.min
 
 
-class MemoryBoardAdapter(private val context: Context,private val numPieces: Int) :
+class MemoryBoardAdapter(
+    private val context: Context,
+    private val boardSize: BoardSize,
+    private val cardImages: List<Int>
+) :
     RecyclerView.Adapter<MemoryBoardAdapter.ViewHolder>() {
 
     companion object{
@@ -21,8 +26,8 @@ class MemoryBoardAdapter(private val context: Context,private val numPieces: Int
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        val cardHeight = parent.height /2 -(2 * MARGIN_SIZE)
-        val cardWeight = parent.width /4 - (2 * MARGIN_SIZE)
+        val cardHeight = parent.height /boardSize.getHeight() -(2 * MARGIN_SIZE)
+        val cardWeight = parent.width /boardSize.getWidth() - (2 * MARGIN_SIZE)
         val cardSideLength = min(cardHeight,cardWeight)
 
         val view :View =  LayoutInflater.from(context).inflate(R.layout.memory_card, parent, false)
@@ -37,7 +42,7 @@ class MemoryBoardAdapter(private val context: Context,private val numPieces: Int
       holder.bind(position)
     }
 
-    override fun getItemCount() = numPieces
+    override fun getItemCount() = boardSize.numCards
 
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -45,11 +50,10 @@ class MemoryBoardAdapter(private val context: Context,private val numPieces: Int
 
 
         fun bind(position: Int) {
-
+            imageButton.setImageResource(cardImages[position])
             imageButton.setOnClickListener {
                 Log.i(TAG, "clicked position $position")
             }
         }
     }
-
 }
