@@ -3,6 +3,7 @@ package com.harsh02.h_memory_game
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
@@ -21,5 +22,10 @@ class MainActivity : AppCompatActivity() {
         rvBoard = findViewById(R.id.rv_board)
         tvnummoves = findViewById(R.id.tv_num_moves)
         tvnumpairs = findViewById(R.id.tv_num_pairs)
+
+        rvBoard.adapter = MemoryBoardAdapter(this,8)
+        rvBoard.setHasFixedSize(true)
+        rvBoard.layoutManager = GridLayoutManager(this,2)
+
     }
 }
