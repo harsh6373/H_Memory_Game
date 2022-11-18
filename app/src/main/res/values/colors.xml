@@ -10,4 +10,12 @@
     <color name="color_grey">#E0E0E0</color>
     <color name="color_progressnone">#DC1E08</color>
     <color name="color_progress_full">#35BA01</color>
+
+
+
+    <color name="darker_greeen">#105C16</color>
+    <color name="dark_green">#35BA01</color>
+    <color name="green">#25DB34</color>
+
+
 </resources>

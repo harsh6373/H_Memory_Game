@@ -1,6 +1,7 @@
 package com.harsh02.h_memory_game
 
 import android.animation.ArgbEvaluator
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.github.jinatonic.confetti.CommonConfetti
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
@@ -170,6 +172,7 @@ class MainActivity : AppCompatActivity() {
 
             if (memoryGame.haveWonGame()){
                 Snackbar.make(clroot,"Congratulations You Won!!",Snackbar.LENGTH_LONG).show()
+                CommonConfetti.rainingConfetti(clroot, intArrayOf(Color.GREEN,Color.BLUE,Color.RED,Color.MAGENTA,Color.YELLOW)).oneShot()
             }
         }
 
